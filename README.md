@@ -99,11 +99,8 @@ Note: the quasar-dev task is defined in .vscode/tasks
 # Typescript code generation
 
 To generate the typescript models based on the OpenAPI definition coming from FastAPI:
-
 First start the REST API server, download the openapi.json, store in repo root and execute:
 
-
-
 ```
-./frontend/node_modules/.bin/openapi --input openapi.json --output ./frontend --exportSchemas true
+./generate_ts_from_openapi.sh
 ```

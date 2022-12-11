@@ -14,6 +14,15 @@
             "justMyCode": true
         },
         {
+            "name": "run_rest_api",
+            "type": "python",
+            "cwd": "${workspaceFolder}",
+            "request": "launch",
+            "module": "service.rest_api",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+        {
             "name": "example_analysis_via_python",
             "type": "python",
             "cwd": "${workspaceFolder}",
@@ -27,7 +36,7 @@
             "type": "python",
             "cwd": "${workspaceFolder}",
             "request": "launch",
-            "module": "run_bioimage_processing_service",
+            "module": "service.bioimage_processing_service_run",
             "console": "integratedTerminal",
             "justMyCode": true
         }
