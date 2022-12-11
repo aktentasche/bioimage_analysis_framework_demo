@@ -36,8 +36,8 @@ class DetectRidgesResponse(ImageBaseResponse):
 
 
 class IsolateRgbResponse(ImageBaseResponse):
-    foo: int = Field(..., description="foo")
+    ...
 
 
 class RecognizeFacesResponse(ImageBaseResponse):
-    foo: int = Field(..., description="foo")
+    ...

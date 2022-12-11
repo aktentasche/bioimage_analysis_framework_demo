@@ -12,15 +12,12 @@ _TIMEOUT_SECONDS = 10
 class BioImageProcessingProxy:
     def detect_ridges(
         self,
-        # need np image for usage from scriptm json image from web ui
-        image: NpImage | JsonImage,
+        image: NpImage,
     ) -> DetectRidgesResponse:
 
-        # convert to JsonImage if not already
-        if not isinstance(image, JsonImage):
-            image = convert_npimg_to_jsonimg(image)
-
-        response_future = task_detect_ridges.apply_async(args=(image,))
+        response_future = task_detect_ridges.apply_async(
+            args=(convert_npimg_to_jsonimg(image),)
+        )
         try:
             return DetectRidgesResponse.parse_raw(
                 response_future.get(timeout=_TIMEOUT_SECONDS)
@@ -33,7 +30,7 @@ class BioImageProcessingProxy:
 
     def isolate_rgb(
         self,
-        image: int,
+        image: NpImage,
     ) -> IsolateRgbResponse:
 
         response_future = task_isolate_rgb.apply_async(
@@ -51,7 +48,7 @@ class BioImageProcessingProxy:
 
     def recognize_faces(
         self,
-        image: int,
+        image: NpImage,
     ) -> DetectRidgesResponse:
 
         response_future = task_recognize_faces.apply_async(
