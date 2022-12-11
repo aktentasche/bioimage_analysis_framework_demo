@@ -11,7 +11,8 @@ Feel free to submit an issue or drop me an email if you have problems setting th
 1. [Python 3.10+](https://www.python.org/)
 2. [poetry version 1.2.2+](https://python-poetry.org/docs/#installing-with-the-official-installer)
 3. [Node 18.12.1 LTS](https://nodejs.org/en/)
-4. [VSCode](https://code.visualstudio.com/)
+4. [Docker 20.10.21+](https://docs.docker.com/get-docker/)
+5. [VSCode](https://code.visualstudio.com/)
 
 
 # Installation / Library download
@@ -31,14 +32,45 @@ cd frontend
 npm install
 ```
 
+# Architecture
+![](architecture.drawio.png)
+
 # Development
 
-The below hints how to start developing different parts of the framework refer to a Linux machine and VSCode. 
-If you use a different environment things might be different.
+Note: Below instructions are written for a machine running Linux and VSCode as IDE. 
 
+Generally speaking, all orange components of above architecture have to be started successively:
 
+1. The AMQP message broker that distributes tasks amongst workers
+2. The redis results backend for sending task results back to the requester
+3. The celery services that execute tasks
+4. The web frontend (optional)
 
-## Web frontend
+## 1. AMQP broker
+Execute in a shell:
+
+```bash
+# remove potential "old" container
+docker rm bioimage-db-infra-rabbit
+# start RabbitMQ broker
+docker run --hostname localhost --name bioimage-db-infra-rabbit -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=biodude -e RABBITMQ_DEFAULT_PASS=biodude rabbitmq:3-management
+```
+
+The management interface can be found at http://localhost:15672/ with the user/password biodude
+
+## 2. redis results backend
+
+Execute in a shell:
+
+```
+docker run --name bioimage-db-infra-redis redis
+```
+
+## 3. services
+
+TBD
+
+## 4. Web frontend
 To start the Quasar development server:
 
 1. Press **Ctrl+Shift+P**
