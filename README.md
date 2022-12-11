@@ -44,37 +44,52 @@ Generally speaking, all orange components of above architecture have to be start
 1. The AMQP message broker that distributes tasks amongst workers
 2. The redis results backend for sending task results back to the requester
 3. The celery service that executes tasks
-4. The web frontend (optional)
+4. The REST API that is used for communication from the browser to the service
+5. The web frontend 
+
+Then you could execute the script `run_example_analysis_via_python.sh` to see how 
+everything works from python or play around with the web interface. 
+
+
 
 ## 1. AMQP broker
-Execute in a shell in the repo root:
+Open a new terminal and in the repo root and execute:
 
 ```bash
-# remove potential "old" container
-docker rm bioimage-db-infra-rabbit
-# start RabbitMQ broker
-docker run --hostname localhost --name bioimage-db-infra-rabbit -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=biodude -e RABBITMQ_DEFAULT_PASS=biodude rabbitmq:3-management
+./run_rabbitmq_broker.sh
 ```
 
 The management interface can be found at http://localhost:15672/ with the user/password biodude
 
 ## 2. redis results backend
+Open a new terminal and in the repo root and execute:
 
-Execute in a shell:
-
-```
-docker run --name bioimage-db-infra-redis redis
+```bash
+./run_redis_result_backend.sh
 ```
 
 ## 3. Image processing service
 
-TBD
+Open a new terminal and in the repo root and execute:
 
-## 4. Web frontend
-To start the Quasar development server:
+```bash
+./run_bioimage_processing_service.sh
+```
+
+## 4. REST API
+
+Open a new terminal and in the repo root and execute:
+
+```bash
+./run_rest_api.sh.sh
+```
+
+## 5. Web frontend
+To start the Quasar development server do the following in VSCode:
 
 1. Press **Ctrl+Shift+P**
 2. Select **Run Task**
 3. Select **quasar-dev**
+4. Go to your browser and visit http://localhost:8080/
 
 Note: the quasar-dev task is defined in .vscode/tasks
