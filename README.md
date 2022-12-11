@@ -84,6 +84,8 @@ Open a new terminal and in the repo root and execute:
 ./run_rest_api.sh.sh
 ```
 
+Find the FastAPI interface at http://0.0.0.0:51337/docs
+
 ## 5. Web frontend
 To start the Quasar development server do the following in VSCode:
 
@@ -93,3 +95,15 @@ To start the Quasar development server do the following in VSCode:
 4. Go to your browser and visit http://localhost:8080/
 
 Note: the quasar-dev task is defined in .vscode/tasks
+
+# Typescript code generation
+
+To generate the typescript models based on the OpenAPI definition coming from FastAPI:
+
+First start the REST API server, download the openapi.json, store in repo root and execute:
+
+
+
+```
+./frontend/node_modules/.bin/openapi --input openapi.json --output ./frontend --exportSchemas true
+```
