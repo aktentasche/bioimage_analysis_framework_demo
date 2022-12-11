@@ -43,7 +43,7 @@ Generally speaking, all orange components of above architecture have to be start
 
 1. The AMQP message broker that distributes tasks amongst workers
 2. The redis results backend for sending task results back to the requester
-3. The celery services that execute tasks
+3. The celery service that executes tasks
 4. The web frontend (optional)
 
 ## 1. AMQP broker
@@ -66,7 +66,7 @@ Execute in a shell:
 docker run --name bioimage-db-infra-redis redis
 ```
 
-## 3. services
+## 3. Image processing service
 
 TBD
 
