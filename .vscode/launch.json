@@ -14,6 +14,15 @@
             "justMyCode": true
         },
         {
+            "name": "example_analysis_via_python",
+            "type": "python",
+            "cwd": "${workspaceFolder}",
+            "request": "launch",
+            "module": "example_analysis_via_python",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
             "name": "run_bioimage_processing_service",
             "type": "python",
             "cwd": "${workspaceFolder}",

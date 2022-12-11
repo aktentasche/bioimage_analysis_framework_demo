@@ -47,7 +47,7 @@ Generally speaking, all orange components of above architecture have to be start
 4. The web frontend (optional)
 
 ## 1. AMQP broker
-Execute in a shell:
+Execute in a shell in the repo root:
 
 ```bash
 # remove potential "old" container

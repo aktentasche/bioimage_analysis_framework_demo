@@ -12,17 +12,20 @@ _TIMEOUT_SECONDS = 10
 class BioImageProcessingProxy:
     def detect_ridges(
         self,
-        image: int,
+        # need np image for usage from scriptm json image from web ui
+        image: NpImage | JsonImage,
     ) -> DetectRidgesResponse:
 
-        response_future = task_detect_ridges.apply_async(
-            args=(image,),
-            queue=Queue(name="detect_ridges", auto_delete=True, durable=False),
-        )
+        # convert to JsonImage if not already
+        if not isinstance(image, JsonImage):
+            image = convert_npimg_to_jsonimg(image)
+
+        response_future = task_detect_ridges.apply_async(args=(image,))
         try:
             return DetectRidgesResponse.parse_raw(
                 response_future.get(timeout=_TIMEOUT_SECONDS)
             )
+
         except TimeoutError:
             msg = f"""Could not get result from detect_ridges within 
                     {_TIMEOUT_SECONDS} seconds."""
