@@ -10,6 +10,12 @@ python = ">=3.10,<4.0"
 loguru = "^0.6.0"
 celery = "^5.2.7"
 redis = "^4.4.0"
+scikit-image = "^0.19.3"
+opencv-python = "^4.6.0.66"
+pooch = "^1.6.0"
+numpy = "^1.23.5"
+json-numpy = "^1.0.1"
+matplotlib = "^3.6.2"
 
 [tool.poetry.extras]
 

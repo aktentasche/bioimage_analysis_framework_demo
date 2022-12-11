@@ -5,6 +5,15 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "foo",
+            "type": "python",
+            "cwd": "${workspaceFolder}",
+            "request": "launch",
+            "module": "foo",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
             "name": "run_bioimage_processing_service",
             "type": "python",
             "cwd": "${workspaceFolder}",
