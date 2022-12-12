@@ -2,11 +2,25 @@ import ipaddress
 
 import uvicorn  # type: ignore
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from service.router import router
 
 rest_api = FastAPI()
 rest_api.include_router(router)
+
+
+origins = [
+    "http://localhost:8080",
+]
+
+rest_api.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 if __name__ == "__main__":
     uvicorn.run(  # type: ignore
