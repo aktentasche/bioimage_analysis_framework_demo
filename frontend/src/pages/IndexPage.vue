@@ -10,8 +10,8 @@
       ></q-file>
     </div>
     <div>
-      <q-img :src="image_original_url" style="width: 600px"></q-img>
-      <q-img :src="image_detect_ridges_url" style="width: 600px"></q-img>
+      <img :src="image_original_url" :alt="image_original_url" />
+      <img :src="image_detect_ridges_url" :alt="image_detect_ridges_url" />
     </div>
   </q-page>
 </template>
@@ -37,13 +37,14 @@ async function imageChanged() {
       file: image_original.value
     };
 
-    await DefaultService.detectRidgesDetectRidgesPost(post_blob).then((blob) =>
-      console.log(blob)
+    await DefaultService.detectRidgesDetectRidgesPost(post_blob).then(
+      (response_blob) => {
+        const blob_obj = new Blob([response_blob], { type: 'image/png' });
+        console.log(response_blob);
+
+        image_detect_ridges_url.value = URL.createObjectURL(blob_obj);
+      }
     );
-    // (image_detect_ridges_url.value = URL.createObjectURL(
-    //   new Blob(blob, { type: 'image/jpeg' })
-    // ))
-    // );
   }
 }
 </script>
