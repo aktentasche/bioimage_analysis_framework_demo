@@ -76,12 +76,16 @@ Open a new terminal and in the repo root and execute:
 ./run_bioimage_processing_service.sh
 ```
 
+To simulate another server/node just open another terminal and run the same command again.
+
+Tasks should be evenly distributed between the two.
+
 ## 4. REST API
 
 Open a new terminal and in the repo root and execute:
 
 ```bash
-./run_rest_api.sh.sh
+./run_rest_api.sh
 ```
 
 Find the FastAPI interface at http://0.0.0.0:51337/docs
